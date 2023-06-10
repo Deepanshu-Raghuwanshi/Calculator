@@ -1,0 +1,35 @@
+h1 {
+  margin: 10px;
+  background-color: antiquewhite;
+}
+.display {
+  height: 160px;
+  width: 700px;
+  background-color: white;
+  border: 1px dotted black;
+  font-size: 20px;
+}
+.mdisplay {
+  display: flex;
+  justify-content: center;
+}
+.button {
+  display: flex;
+  justify-content: center;
+}
+
+.button1 {
+  display: flex;
+  justify-content: center;
+  height: 400px;
+  width: 400px;
+  background-color: rgb(91, 126, 126);
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding-left: 30px;
+}
+.buttons {
+  margin: 10px;
+  height: 60px;
+  width: 60px;
+}
