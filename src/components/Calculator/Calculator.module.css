@@ -21,12 +21,12 @@ h1 {
 .button1 {
   display: flex;
   justify-content: center;
-  height: 400px;
-  width: 400px;
+  height: 350px;
+  width: 480px;
   background-color: rgb(91, 126, 126);
   flex-wrap: wrap;
   flex-direction: column;
-  padding-left: 30px;
+  padding-left: 15px;
 }
 .buttons {
   margin: 10px;

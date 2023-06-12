@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "./Calculator.module.css";
 import { Button } from "react-bootstrap";
 
@@ -7,13 +7,26 @@ const Calculator = () => {
   const [result, setResult] = useState("");
 
   const clickHandler1 = (input) => {
-    setNum1((prevNumbers) => [...prevNumbers, input]);
+    const lastItem = num1[num1.length - 1];
+    if (
+      typeof input === "number" ||
+      (typeof input === "string" &&
+        !["+", "-", "*", "/", "%"].includes(lastItem))
+    ) {
+      setNum1((prevNumbers) => [...prevNumbers, input.toString()]);
+    }
   };
 
   const resultHandler = () => {
     const joinedExpression = num1.join("");
     const result1 = eval(joinedExpression);
     setResult(result1);
+  };
+
+  const deleteHandler = () => {
+    const delete1 = num1.splice(-1);
+    setNum1([...num1]);
+    console.log(num1);
   };
 
   const clearHandler = () => {
@@ -36,7 +49,7 @@ const Calculator = () => {
       <hr />
       <div className={styles.button}>
         <div className={styles.button1}>
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((number) => (
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0, "00", "."].map((number) => (
             <Button
               key={number}
               onClick={() => clickHandler1(number)}
@@ -58,53 +71,6 @@ const Calculator = () => {
             </Button>
           ))}
 
-          {/* <Button
-            variant="danger"
-            onClick={() => {
-              clickHandler1("+");
-            }}
-            className={styles.buttons}
-          >
-            +
-          </Button>
-          <Button
-            variant="danger"
-            onClick={() => {
-              clickHandler1("-");
-            }}
-            className={styles.buttons}
-          >
-            -
-          </Button>
-          <Button
-            variant="danger"
-            onClick={() => {
-              clickHandler1("*");
-            }}
-            className={styles.buttons}
-          >
-            *
-          </Button>
-          <Button
-            variant="danger"
-            onClick={() => {
-              clickHandler1("/");
-            }}
-            className={styles.buttons}
-          >
-            /
-          </Button>
-
-          <Button
-            variant="danger"
-            onClick={() => {
-              clickHandler1("%");
-            }}
-            className={styles.buttons}
-          >
-            %
-          </Button> */}
-
           <Button
             variant="warning"
             onClick={resultHandler}
@@ -118,6 +84,13 @@ const Calculator = () => {
             className={styles.buttons}
           >
             AC
+          </Button>
+          <Button
+            variant="warning"
+            onClick={deleteHandler}
+            className={styles.buttons}
+          >
+            <i class="bi bi-backspace"></i>
           </Button>
         </div>
       </div>
